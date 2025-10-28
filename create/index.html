@@ -58,6 +58,6 @@
         assertionjson = assertionjson.replace('{lastname.firstname@asdk12ak.onmicrosoft.com in sha256}',sha256email)
         assertionjson = assertionjson.replace('{creation date/time}',creation_date)
         
-        document.location.href = "data:<h1>Issuer: </h1><p>" + issuerjson + "</p><h1>Badge: </h1><p>" + badgejson + "</p><h1>Assertion: </h1><p>" + assertionjson + "</p>"
+        document.body.innerHTML = issuerjson + badgejson + assertionjson
     };
 </script>

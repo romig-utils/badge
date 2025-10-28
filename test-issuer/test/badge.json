@@ -4,7 +4,7 @@
     "type": "BadgeClass",
     "name": "Test",
     "description": "This badge is for test purposes only.",
-    "image": "https://romig-utils.github.io/badge/test-issuer/test/badge.jpg",
+    "image": "https://romig-utils.github.io/badge/test-issuer/test/badge.png",
     "criteria": "http://romig-utils.github.io/badge/test-issuer/test",
     "tags": ["test", "moretest"],
     "alignment": [ ],

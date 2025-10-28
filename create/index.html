@@ -1,13 +1,18 @@
 <label for="issuer">Issuer:</label>
 <input id="issuer" name="issuer" type="text" />
+<br>
 <label for="badge">Badge Name:</label>
 <input id="badge" name="badge" type="text" />
+<br>
 <label for="badge_d">Badge Description:</label>
 <textarea name="badge_d" id="badge_d"></textarea>
+<br>
 <label for="image">Image (PNG):</label>
 <input id="image" name="image" type="file" />
+<br>
 <label for="student">Student (lastname.firstname):</label>
 <input id="student" name="student" />
+<br>
 <button id="submit" onclick="parseInput();">Submit</button>
 <script>
     async function sha256(message) {

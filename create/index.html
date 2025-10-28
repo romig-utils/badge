@@ -30,13 +30,17 @@
         return hashHex;
     };
     function parseInput() {
-        var issuer = document.getElementById("issuer").value;
-        var badge = document.getElementById("badge").value;
-        var badge_d = document.getElementById("badge-d").value;
-        var image = document.getElementById("image").value;
-        var student = document.getElementById("student").value;
+        var issuer = document.getElementById("issuer");
+        var badge = document.getElementById("badge");
+        var badge_d = document.getElementById("badge-d");
+        var image = document.getElementById("image");
+        var student = document.getElementById("student");
         var creation_date = new Date().toISOString();
-
+        issuer = issuer.value
+        badge = badge.value
+        badge_d = badge_d.value
+        student = student.value
+        
         var sha256email = sha256(student + "@asdk12ak.onmicrosoft.com")
 
         var issuer_slug = issuer.replace(/\s+/g, '-').toLowerCase();

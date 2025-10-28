@@ -1,0 +1,58 @@
+<label for="issuer">Issuer:</label>
+<input id="issuer" name="issuer" type="text" />
+<label for="badge">Badge Name:</label>
+<input id="badge" name="badge" type="text" />
+<label for="badge_d">Badge Description:</label>
+<textarea name="badge_d" id="badge_d"></textarea>
+<label for="image">Image (PNG):</label>
+<input id="image" name="image" type="file" />
+<label for="student">Student (lastname.firstname):</label>
+<input id="student" name="student" />
+<button id="submit" onclick="parseInput();">Submit</button>
+<script>
+    async function sha256(message) {
+        // encode as UTF-8
+        const msgBuffer = new TextEncoder().encode(message);                    
+
+        // hash the message
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+        // convert ArrayBuffer to Array
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+        // convert bytes to hex string                  
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+    };
+    function parseInput() {
+        var issuer = document.getElementById("issuer").value;
+        var badge = document.getElementById("badge").value;
+        var badge_d = document.getElementById("badge-d").value;
+        var image = document.getElementById("image").value;
+        var student = document.getElementById("student").value;
+        var creation_date = new Date().toISOString();
+
+        var sha256email = sha256(student + "@asdk12ak.onmicrosoft.com")
+
+        var issuer_slug = issuer.replace(/\s+/g, '-').toLowerCase();
+        var badge_slug = badge.replace(/\s+/g, '-').toLowerCase();
+
+        var issuerjson = '{"@context": "https://w3id.org/openbadges/v2","id": "http://romig-utils.github.io/badge/{issuer-slug}/issuer.json","type": "Issuer","name": "{issuer-name}","url": "https://romig-utils.github.io/badge/{issuer-slug}"}';
+        issuerjson = issuerjson.replace('/{issuer-name}+/g',issuer);
+        issuerjson = issuerjson.replace('{issuer-slug}',issuer_slug);
+        
+        var badgejson = '{"@context": "https://w3id.org/openbadges/v2","id": "https://romig-utils.github.io/badge/{issuer-slug}/{badge-slug}/badge.json","type": "BadgeClass","name": "{badge-name}","description": "{badge-description}","image": "https://romig-utils.github.io/badge/{issuer-slug}/{badge-slug}/badge.png","tags": ["tags","moretags"],"issuer": "http://romig-utils.github.io/badge/{issuer-slug}/issuer.json"}';
+        badgejson = badgejson.replace('/{issuer-slug}+/g',issuer_slug);
+        badgejson = badgejson.replace('/{badge-slug}+/g',badge_slug);
+        badgejson = badgejson.replace('/{badge-name}+/g',badge)
+        badgejson = badgejson.replace('/{badge-description}+/g',badge_d)
+
+        var assertionjson = '{"@context": "https://w3id.org/openbadges/v2","type": "Assertion","id": "https://romig-utils.github.io/badge/{issuer-slug}/{badge-slug}/assertion.json","recipient":{"type": "email","hashed": true,"identity": "sha256${lastname.firstname@asdk12ak.onmicrosoft.com in sha256}"},"badge": "https://romig-utils.github.io/badge/{issuer-slug}/{badge-slug}/badge.json","verification":{"type": "hosted"},"issuedOn": "{creation date/time}"}'
+        assertionjson = assertionjson.replace('/{issuer-slug}+/g',issuer_slug);
+        assertionjson = assertionjson.replace('/{badge-slug}+/g',badge_slug);
+        assertionjson = assertionjson.replace('{lastname.firstname@asdk12ak.onmicrosoft.com in sha256}',sha256email)
+        assertionjson = assertionjson.replace('{creation date/time}',creation_date)
+        
+        document.location.href = "data:<h1>Issuer: </h1><p>" + issuerjson + "</p><h1>Badge: </h1><p>" + badgejson + "</p><h1>Assertion: </h1><p>" + assertionjson + "</p>"
+    };
+</script>

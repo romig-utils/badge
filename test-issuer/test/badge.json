@@ -1,0 +1,12 @@
+{
+    "@context": "https://w3id.org/openbadges/v2",
+    "id": "https://romig-utils.github.io/badge/test-issuer/test/badge.json",
+    "type": "BadgeClass",
+    "name": "Test",
+    "description": "This badge is for test purposes only.",
+    "image": "https://romig-utils.github.io/badge/test-issuer/test/badge.jpg",
+    "criteria": "http://romig-utils.github.io/badge/test-issuer/test",
+    "tags": ["test", "moretest"],
+    "alignment": [ ],
+    "issuer": "http://romig-utils.github.io/badge/test-issuer/issuer.json"
+}

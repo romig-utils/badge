@@ -1,0 +1,7 @@
+{
+    "@context": "https://w3id.org/openbadges/v2",
+    "id": "http://romig-utils.github.io/badge/test-issuer/issuer.json",
+    "type": "Issuer",
+    "name": "TestIssuer",
+    "url": "https://romig-utils.github.io/badge/test-issuer"
+}

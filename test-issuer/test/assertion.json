@@ -1,0 +1,18 @@
+{
+    "@context": "https://w3id.org/openbadges/v2",
+    "type": "Assertion",
+    "id": "https://romig-utils.github.io/badge/test-issuer/test/assertion.json",
+    "recipient":
+    {
+        "type": "email",
+        "hashed": true,
+        "identity": "sha256$4dc758bd503ea2abc9c4e492cc7bc969ac6ef39559aa01c02e0f297076672cc7"
+    },
+    "badge": "https://romig-utils.github.io/badge/test-issuer/test/badge.json",
+    "verification":
+    {
+        "type": "hosted"
+    },
+    "issuedOn": "2025-10-27T23:59:59Z",
+    "expires": "2030-10-28T23:59:59Z"
+}

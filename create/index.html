@@ -57,7 +57,11 @@
         assertionjson = assertionjson.replace('/{badge-slug}+/g',badge_slug);
         assertionjson = assertionjson.replace('{lastname.firstname@asdk12ak.onmicrosoft.com in sha256}',sha256email)
         assertionjson = assertionjson.replace('{creation date/time}',creation_date)
-        
-        document.body.innerHTML = issuerjson + badgejson + assertionjson
+
+        console.log(issuerjson)
+        console.log(badgejson)
+        console.log(assertionjson)
     };
 </script>
+<script src="node_modules/eruda/eruda.js"></script>
+<script>eruda.init();</script>
